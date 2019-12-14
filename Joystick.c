@@ -37,6 +37,7 @@ typedef enum {
   HOLD_CAM_L, // Hold R Stick Left
   HOLD_CAM_R, // Hold R Stick Right
   HOLD_CAM_C, // clear Hold R Stick = center
+  HOLD_CAM_UP,// Hold R Stick Up
   X,
   Y,
   A,
@@ -45,6 +46,7 @@ typedef enum {
   R,
   PLUS,
   HOME,
+  H_LEFT,
   LOOP_START,
   NOTHING
 } Buttons_t;
@@ -61,98 +63,16 @@ static const command step[] = {
   // ここまでコントローラーを認識させるおまじない
 
   // Start
-
+  { HOLD_CAM_UP,    0 },
   // 初期設定など1回だけ動かしたいコードはここまで
 
   // loop Start
   { LOOP_START, 0 },
   // これより下を無限ループ
 
-  { A,          2 }, // ワット回収
-  { NOTHING,   10 },
-  { B,          2 },
-  { NOTHING,   10 },
-  { B,          2 },
-  { NOTHING,  120 },
-  { B,          2 },
-  { NOTHING,   20 }, // レイド閉じる
-
-  { HOME,       5 }, // Home
-  { NOTHING,   15 },
-  { DOWN,       2 },
-  { NOTHING,    1 },
-  { RIGHT,      2 },
-  { NOTHING,    1 },
-  { RIGHT,      2 },
-  { NOTHING,    1 },
-  { RIGHT,      2 },
-  { NOTHING,    1 },
-  { RIGHT,      2 },
-  { NOTHING,    1 },
-  { A,          2 }, // 設定選択
-  { NOTHING,    5 },
-
-  { DOWN,      80 },
-
-  { A,          2 }, // 設定>本体 選択
-  { NOTHING,    5 },
-
-  { DOWN,       2 },
-  { NOTHING,    2 },
-  { DOWN,       2 },
-  { NOTHING,    2 },
-  { DOWN,       2 },
-  { NOTHING,    2 },
-  { DOWN,       2 },
-  { NOTHING,    2 },
-  { A,          2 }, // 日付と時刻選択
-  { NOTHING,   10 },
-
-  { DOWN,       2 },
-  { NOTHING,    1 },
-  { DOWN,       2 },
-  { NOTHING,    1 },
-  { A,          2 }, // 現在の日付と時刻
-  { NOTHING,    5 },
-
-  { DOWN,       5 }, // 年号1つもどす
-  { NOTHING,    1 },
+  { H_LEFT,     2 },
   { A,          2 },
-  { NOTHING,    1 },
-  { A,          2 },
-  { NOTHING,    1 },
-  { A,          2 },
-  { NOTHING,    1 },
-  { A,          2 },
-  { NOTHING,    1 },
-  { A,          2 },
-  { NOTHING,    1 },
-  { A,          2 }, // 日付 OK
-  { NOTHING,    5 },
-
-  { A,          2 },
-  { NOTHING,    1 },
-  { LEFT,      30 },
-  { NOTHING,    1 },
-  { UP,         2 }, // 年号1つすすめる
-  { NOTHING,    1 },
-  { A,          2 },
-  { NOTHING,    1 },
-  { A,          2 },
-  { NOTHING,    1 },
-  { A,          2 },
-  { NOTHING,    1 },
-  { A,          2 },
-  { NOTHING,    1 },
-  { A,          2 },
-  { NOTHING,    1 },
-  { A,          2 }, // 日付 OK
-  { NOTHING,    5 },
-
-  { HOME,       2 },  // ゲームに戻る
-  { NOTHING,   30 },
-  { HOME,       2 },
-  { NOTHING,   30 },
+  { NOTHING,  100 },
 };
 
 // Main entry point.
@@ -287,6 +207,7 @@ int report_count = 0;
 int hold_LX = STICK_CENTER;
 int hold_LY = STICK_CENTER;
 int hold_RX = STICK_CENTER;
+int hold_RY = STICK_CENTER;
 int bufindex = 0;
 int duration_count = 0;
 int loop_start_step = 0;
@@ -304,6 +225,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
   ReportData->LX = hold_LX;
   ReportData->LY = hold_LY;
   ReportData->RX = hold_RX;
+  ReportData->RY = hold_RY;
 
   // Repeat ECHOES times the last report
   if (echoes > 0)
@@ -391,6 +313,11 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
         case HOLD_CAM_C:
           hold_RX = STICK_CENTER;
+          hold_RY = STICK_CENTER;
+          break;
+
+        case HOLD_CAM_UP:
+          hold_RY = STICK_MIN;
           break;
 
         case A:
@@ -419,6 +346,10 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
         case HOME:
           ReportData->Button |= SWITCH_HOME;
+          break;
+
+        case H_LEFT:
+          ReportData->HAT = HAT_LEFT;
           break;
 
         default:
