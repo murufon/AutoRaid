@@ -72,7 +72,7 @@ static const command step[] = {
 
   { H_LEFT,     2 },
   { A,          2 },
-  { NOTHING,  100 },
+  { NOTHING,   50 },
 };
 
 // Main entry point.
