@@ -47,6 +47,7 @@ typedef enum {
   PLUS,
   HOME,
   H_LEFT,
+  H_TOP,
   LOOP_START,
   NOTHING
 } Buttons_t;
@@ -70,9 +71,11 @@ static const command step[] = {
   { LOOP_START, 0 },
   // これより下を無限ループ
 
-  { H_LEFT,     2 },
-  { A,          2 },
-  { NOTHING,   50 },
+  { H_LEFT,     2 }, // ダイマックスを選択する用。コメントアウトするとダイマックスせずレイドバトルをする
+  { A,          2 }, // 通常はここのAで進行する
+  { H_TOP,      2 }, // 捕まえるかの選択画面用
+  { A,          2 }, // 「つかまえない」を押す
+  { NOTHING,  100 }, // 一定時間待つ
 };
 
 // Main entry point.
@@ -350,6 +353,10 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
         case H_LEFT:
           ReportData->HAT = HAT_LEFT;
+          break;
+
+        case H_TOP:
+          ReportData->HAT = HAT_TOP;
           break;
 
         default:

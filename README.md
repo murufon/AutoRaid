@@ -26,30 +26,27 @@
 #### Note
 ##### 事前準備
 - 設定
-    - 「自動で送る」にしておく
-    - 「ニックネームを登録しない」にしておく
     - (インターネットをオフにしておく)
-- ボックス
-    - 捕まえたポケモンが預けられてもいいボックスにして閉じておく
 - ボール
-    - 念のため大事なボールはボックスのポケモンに持たせておく
-    - **バッグの並び順において、モンスターボールの一つ前のボールが使われるらしい？(要検証)(バッグの一番したのボールが使われると勘違いしていました。ごめんなさい)**
-    - そこに不要なボールを置いておく
-    - バッグの順番はお気に入り+並び替えで変更できる
+    - 大事なボールはボックスのポケモンに持たせておく
+    - 不要なボールは全て売り、バッグを空にしておく
 - ねがいのかたまり
     - たくさん用意しておく
-    - ボックスの空き数などにあわせて個数を調整してもよい
 - ポケモン
     - 戦わせたいポケモンを手持ちの先頭に持ってくる
     - 撃ちたい技を一番上に持ってくる
 
+##### 開始するタイミング
+- 巣穴の前
+- 同じ動作をループさせているだけなのでレイドバトルの途中などに挿してもうまく動くはず
+
 ##### 仕組み
 - ずっと右スティックの上押しっぱなし
     - 「ポケモンを変える」を押さないようにするため
-- 一定間隔で「十字キー左押してすぐAボタン」を繰り返す
+- 一定間隔で「十字キー左→A→十字キー上→A」を繰り返す
     - 十字キー左を押すことでダイマックスできる
-    - 最後の報酬画面で十字キー左により「次へ」にカーソルを合わせることができる
     - あまり間隔が短いと「ポケモンを変える」を押してしまいそうなので、長めにしている
+    - 捕まえるか選択する画面でのみ十字キー左→Aが反応しないため、十字キー→Aによって捕まえずにレイドを終了できる
 
 #### Compiling and Flashing onto the Teensy 2.0++
 Go to the Teensy website and download/install the [Teensy Loader application](https://www.pjrc.com/teensy/loader.html). For Linux, follow their instructions for installing the [GCC Compiler and Tools](https://www.pjrc.com/teensy/gcc.html). For Windows, you will need the [latest AVR toolchain](http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx) from the Atmel site. See [this issue](https://github.com/LightningStalker/Splatmeme-Printer/issues/10) and [this thread](http://gbatemp.net/threads/how-to-use-shinyquagsires-splatoon-2-post-printer.479497/) on GBAtemp for more information. (Note for Mac users - the AVR MacPack is now called AVR CrossPack. If that does not work, you can try installing `avr-gcc` with `brew`.)
