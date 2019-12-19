@@ -63,16 +63,100 @@ static const command step[] = {
   // ここまでコントローラーを認識させるおまじない
 
   // Start
-  { HOLD_CAM_UP,    0 },
+
   // 初期設定など1回だけ動かしたいコードはここまで
 
   // loop Start
   { LOOP_START, 0 },
   // これより下を無限ループ
 
-  { H_LEFT,     2 },
-  { A,          2 },
+  // ワット回収(ワット回収済みであったとしても元に戻る)
+  { A,          5 },
+  { NOTHING,   30 },
+  { B,          5 },
+  { NOTHING,   30 },
+  { B,          5 },
+  { NOTHING,   30 },
+  { B,          5 },
   { NOTHING,   50 },
+
+  // みんなで挑戦
+  { A,          5 },
+  { NOTHING,   30 },
+  { A,          5 },
+  { NOTHING,  240 }, // ラグを考慮して長めに待機   
+
+  // 設定変更
+  { HOME,       5 },
+  { NOTHING,   15 },
+  { DOWN,       5 },
+  { NOTHING,    5 },
+  { RIGHT,      5 },
+  { NOTHING,    5 },
+  { RIGHT,      5 },
+  { NOTHING,    5 },
+  { RIGHT,      5 },
+  { NOTHING,    5 },
+  { RIGHT,      5 },
+  { NOTHING,    5 },
+  { A,          5 }, // 設定を押す
+  { NOTHING,    5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { DOWN,       5 },
+  { NOTHING,   15 },
+  { A,          5 }, // 設定>本体を押す
+  { NOTHING,    5 },
+  { DOWN,       5 },
+  { NOTHING,    5 },
+  { DOWN,       5 },
+  { NOTHING,    5 },
+  { DOWN,       5 },
+  { NOTHING,    5 },
+  { DOWN,       5 },
+  { NOTHING,    5 },
+  { A,          5 }, // 日付と時刻を押す
+  { NOTHING,    5 },
+  { DOWN,       5 },
+  { NOTHING,    5 },
+  { DOWN,       5 },
+  { NOTHING,    5 },
+  { A,          5 }, // 現在の日付と時刻を押す
+  { NOTHING,   15 },
+  { RIGHT,      5 },
+  { NOTHING,    5 },
+  { RIGHT,      5 },
+  { UP,         5 }, // 日付を1つ増やす
+  { NOTHING,   15 },
+  { RIGHT,      5 },
+  { NOTHING,    5 },
+  { RIGHT,      5 },
+  { NOTHING,    5 },
+  { RIGHT,      5 },
+  { NOTHING,   15 },
+  { A,          5 }, // OKを押す
+  { NOTHING,   30 },
+  { HOME,       5 }, // HOMRに戻る
+  { NOTHING,   30 },
+  { HOME,       5 }, // ゲームに戻る
+  { NOTHING,   30 },
+
+// 巣穴から出る
+  { B,          5 },
+  { NOTHING,   30 },
+  { A,          5 },
+  { NOTHING,  240 }, // ラグを考慮して長めに待機
 };
 
 // Main entry point.
