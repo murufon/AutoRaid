@@ -1,6 +1,12 @@
 ## Automatic Raid Battle
 --- 編集中 / now writing ---
 
+#### 注意
+- 使い方は無限ワットなどと同じです
+- READMEはわかってる人向けのメモなのでかなり省略しています
+- ダウンロードは[releases](https://github.com/murufon/AutoRaid/releases)からどうぞ
+- 捕獲なしverなどもそこにおいてあります
+
 #### What we need
 - マイコン本体 ATmega32u4 など [example](https://www.amazon.co.jp/dp/B07GKR9J4N/)
 - micro USBケーブル [example](https://www.amazon.co.jp/dp/B0711PVX6Z/)
